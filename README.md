@@ -7,7 +7,7 @@ Obs: Para contribuir, seus códigos devem serguir a premissa de serem "didático
 
 
 |         Algoritmo         | C | C++ | C# | JAVA | PYTHON | GO | RUBY | JAVASCRIPT|
-|---------------------------|:--:|:--:|:----:|:------:|:--:|:----:|:----:|
+|---------------------------|:--:|:--:|:--:|:----:|:------:|:--:|:----:|:----:|
 |Pilha Estática com tamanho definido pelo programador| [C](https://github.com/fabriicioa/estruturaDeDados/blob/master/Linguagem%20C/Pilha/pilhaEstaticaPreDefinida.c) | C++ | Java | Python | GO | Ruby | JavaScript |
 |Pilha Estática com tamanho definido pelo usuário| [C](https://github.com/fabriicioa/estruturaDeDados/blob/master/Linguagem%20C/Pilha/pilhaEstaticaPosDefinida.c) | C++ | Java | Python | GO | Ruby |JavaScript |
 |Pilha Dinâmica| [C](https://github.com/fabriicioa/estruturaDeDados/blob/master/Linguagem%20C/Pilha/pilhaDinamica.c) | C++ | C# | Java | Python | GO | Ruby |JavaScript |

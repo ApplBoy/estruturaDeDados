@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  Autor: Saulo José/@AppleBoy
  *  Data:  22-03-2023
  * 

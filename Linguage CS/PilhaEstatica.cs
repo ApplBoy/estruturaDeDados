@@ -175,7 +175,7 @@ public class PilhaEstatica {
     if (pilhaEst.dados[pilhaEst.topo].codigo != codigoAux)
       throw new System.Exception("Falha na criação do elemento");
 
-    SetCor("Green", "Preto");
+    SetCor("Verde", "Preto");
     Console.WriteLine("Elemento inserido com Sucesso!");
     Continuar();
   }
@@ -201,7 +201,7 @@ public class PilhaEstatica {
     if (pilhaEst.dados[pilhaEst.topo--].codigo != -1)
       throw new System.Exception("Falha ao remover um elemento");
 
-    SetCor("Green", "Preto");
+    SetCor("Verde", "Preto");
     Console.WriteLine("Elemento removido com Sucesso!");
     Continuar();
   }
@@ -246,7 +246,7 @@ public class PilhaEstatica {
       {
         if (nomeAux == pilhaEst.dados[i].nome)
         {
-          SetCor("Green", "Preto");
+          SetCor("Verde", "Preto");
           Console.WriteLine("Elemento Encontrado!");
           Mostrar(i);
           Continuar();
@@ -263,7 +263,7 @@ public class PilhaEstatica {
       {
         if (codigoAux == pilhaEst.dados[i].codigo)
         {
-          SetCor("Green", "Preto");
+          SetCor("Verde", "Preto");
           Console.WriteLine("Elemento Encontrado!");
           Mostrar(i);
           Continuar();
@@ -319,7 +319,7 @@ public class PilhaEstatica {
         return 30;
       case "Vermelho":
         return 31;
-      case "Green":
+      case "Verde":
         return 32;
       case "Amarelo":
         return 33;

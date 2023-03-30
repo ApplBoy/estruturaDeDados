@@ -10,7 +10,6 @@
  *        - [0x03:1]      >> Construtor da Pilha (Note que há um input de inteiro `TAMANHO`).
  *    - [0x04_Attr]       >> Atributos do programa principal.
  *    - [0x05_Continue]   >> Essa função é só para esperar pelo input qualquer do usuário antes de continuar certa tarefa.
- *    - [0x06_Opcoes]     >> Função para criar uma lista de opções coloridas.
  *    - [0x07_Menu]       >> Função que realiza o display do menu de escolhas.
  *    - [0x08_Inserir]    >> Função para inserir uma Celula na Pilha.
  *        - [0x08:1]      >> Input do usuário para criar a Celula.
@@ -22,6 +21,7 @@
  *
  *    ---                                                                                   EXTRAS   ---
  *
+ *    - [0x06_Opcoes]     >> Função para criar uma lista de opções coloridas.
  *    - [0x0d_Cor]        >> Essa função, reconhece se o SO é Windows ou (provavelmente) Unix, e troca a cor por:
  *        - [0x0d:1]      >> - Função nativa do C# (Windows).
  *        - [0x0d:2]      >> - Utiliza códigos de Escape ANSI (Unix).

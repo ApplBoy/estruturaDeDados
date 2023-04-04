@@ -286,6 +286,7 @@ public class PilhaEstatica {
       if (colorFg != "default")
       {
         //[0x0d:1]
+        if (colorBg == "default") { "Black" }
         Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colorFg);
         Console.BackgroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colorBg);
         return;

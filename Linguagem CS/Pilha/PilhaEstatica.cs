@@ -132,7 +132,7 @@ public class PilhaEstatica {
     Opcoes(3, "Visualizar no topo.");
     Opcoes(4, "Pesquisar um elemento.");
     while (selecao < 0 || selecao > 5)
-      selecao = Convert.ToInt32(Console.ReadLine());
+      while (!int.TryParse(Console.ReadLine(), out selecao));
     return selecao;
   }
 
@@ -159,12 +159,13 @@ public class PilhaEstatica {
       nomeAux = Console.ReadLine();
 
     Console.WriteLine("Digite o Número do Elemento:");
-    int codigoAux = Convert.ToInt32(Console.ReadLine());
+    int codigoAux;
+    while (!int.TryParse(Console.ReadLine(), out codigoAux));
     while (codigoAux == -1)
     {
       SetCor("Vermelho", "Preto");
       Console.WriteLine("ERRO! VALOR RESERVADO PELO PROGRAMA, USE OUTRO VALOR PARA O ELEMENTO!");
-      codigoAux = Convert.ToInt32(Console.ReadLine());
+      while (!int.TryParse(Console.ReadLine(), out codigoAux));
     }
     SetCor("default", "");
 
@@ -236,7 +237,8 @@ public class PilhaEstatica {
   {
     Console.Clear();
     Console.WriteLine("Digite o CÓDIGO do Elemento (Caso queira procurar pelo NOME, digite -1):");
-    int codigoAux = Convert.ToInt32(Console.ReadLine());
+    int codigoAux;
+    while (!int.TryParse(Console.ReadLine(), out codigoAux));
     if (codigoAux == -1)
     {
       Console.WriteLine("Digite o NOME do Elemento:");  // Pesquisa pelo NOME v

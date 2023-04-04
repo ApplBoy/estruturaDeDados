@@ -327,8 +327,8 @@ public class PilhaEstatica {
 public class MainClass
 {
   //[0x01_Main]
-	static public void Main()
-	{
+  static public void Main()
+  {
     Console.Clear();
     Console.WriteLine("Insira a Quantidade de Celulas que a Pilha Suporta:");
     int inicializador;

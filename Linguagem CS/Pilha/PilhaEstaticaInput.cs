@@ -81,7 +81,7 @@ public class PilhaEstatica {
   //[0x05_Continue]
   public void Continuar()
   {
-    SetCor("Azul", "default");    // >> [0x0d_Cor]
+    SetCor("Blue", "default");    // >> [0x0d_Cor]
     Console.WriteLine("Digite qualquer tecla para continuar...");
     SetCor("default", "");
     Console.ReadKey();
@@ -90,7 +90,7 @@ public class PilhaEstatica {
   //[0x06_Opcoes]
   public void Opcoes(int num, string text)
   {
-    SetCor("Amarelo", "default");
+    SetCor("Yellow", "default");
     Console.Write(num);
     SetCor("default", "");
     Console.WriteLine(" - "+text);
@@ -101,7 +101,7 @@ public class PilhaEstatica {
   {
     int selecao = -1;
     Console.Clear();
-    SetCor("Vermelho", "Branco");
+    SetCor("Red", "White");
     Console.WriteLine("DIGITE 0 PARA SAIR\n");
     SetCor("default", "");
     Console.WriteLine("Selecione uma das opções abaixo:");
@@ -120,7 +120,7 @@ public class PilhaEstatica {
     Console.Clear();
     if (pilhaEst.topo >= TAMANHO-1)
     {
-      SetCor("Vermelho", "default");
+      SetCor("Red", "default");
       Console.WriteLine("ERRO! TAMANHO MÁXIMO ALCANÇADO!");
       SetCor("default", "");
       Continuar();    // >> [0x05_Continue]
@@ -128,7 +128,7 @@ public class PilhaEstatica {
     }
 
     //[0x08:1]
-    SetCor("Azul", "default");
+    SetCor("Blue", "default");
     Console.WriteLine("Elementos Criados: "+(pilhaEst.topo+1)+"\n");
     SetCor("default", "");
     Console.WriteLine("Digite o Nome do Elemento:");
@@ -141,7 +141,7 @@ public class PilhaEstatica {
     while (!int.TryParse(Console.ReadLine(), out codigoAux));
     while (codigoAux == -1)
     {
-      SetCor("Vermelho", "default");
+      SetCor("Red", "default");
       Console.WriteLine("ERRO! VALOR RESERVADO PELO PROGRAMA, USE OUTRO VALOR PARA O ELEMENTO!");
       while (!int.TryParse(Console.ReadLine(), out codigoAux));
     }
@@ -154,7 +154,7 @@ public class PilhaEstatica {
     if (pilhaEst.dados[pilhaEst.topo].codigo != codigoAux)
       throw new System.Exception("Falha na criação do elemento");
 
-    SetCor("Verde", "default");
+    SetCor("Green", "default");
     Console.WriteLine("Elemento inserido com Sucesso!");
     Continuar();
   }
@@ -165,7 +165,7 @@ public class PilhaEstatica {
     Console.Clear();
     if (pilhaEst.topo < 0)
     {
-      SetCor("Vermelho", "default");
+      SetCor("Red", "default");
       Console.WriteLine("ERRO! A PILHA ESTÁ VAZIA!");
       SetCor("default", "");
       Continuar();
@@ -180,7 +180,7 @@ public class PilhaEstatica {
     if (pilhaEst.dados[pilhaEst.topo--].codigo != -1)
       throw new System.Exception("Falha ao remover um elemento");
 
-    SetCor("Verde", "default");
+    SetCor("Green", "default");
     Console.WriteLine("Elemento removido com Sucesso!");
     Continuar();
   }
@@ -199,7 +199,7 @@ public class PilhaEstatica {
     Console.Clear();
     if (pilhaEst.topo < 0)
     {
-      SetCor("Vermelho", "default");
+      SetCor("Red", "default");
       Console.WriteLine("ERRO! A PILHA ESTÁ VAZIA!");
       SetCor("default", "");
       Continuar();
@@ -226,14 +226,14 @@ public class PilhaEstatica {
       {
         if (nomeAux == pilhaEst.dados[i].nome)
         {
-          SetCor("Verde", "default");
+          SetCor("Green", "default");
           Console.WriteLine("Elemento Encontrado!");
           Mostrar(i);
           Continuar();
           return;
         }
       }
-      SetCor("Vermelho", "default");
+      SetCor("Red", "default");
       Console.WriteLine("Elemento Não Foi Encontrado!");
       Continuar();
     }
@@ -243,14 +243,14 @@ public class PilhaEstatica {
       {
         if (codigoAux == pilhaEst.dados[i].codigo)
         {
-          SetCor("Verde", "default");
+          SetCor("Green", "default");
           Console.WriteLine("Elemento Encontrado!");
           Mostrar(i);
           Continuar();
           return;
         }
       }
-      SetCor("Vermelho", "default");
+      SetCor("Red", "default");
       Console.WriteLine("Elemento Não Foi Encontrado!");
       Continuar();
     }
@@ -264,6 +264,7 @@ public class PilhaEstatica {
       if (colorFg != "default")
       {
         //[0x0d:1]
+        if (colorBg == "default") { "Black" }
         Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colorFg);
         Console.BackgroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colorBg);
         return;
@@ -302,21 +303,21 @@ public class PilhaEstatica {
   public int GetCodigoANSI(string cor)
   {
     switch (cor) {
-      case "Preto":
+      case "Black":
         return 30;
-      case "Vermelho":
+      case "Red":
         return 31;
-      case "Verde":
+      case "Green":
         return 32;
-      case "Amarelo":
+      case "Yellow":
         return 33;
-      case "Azul":
+      case "Blue":
         return 34;
       case "Magenta":
         return 35;
-      case "Ciano":
+      case "Cyan":
         return 36;
-      case "Branco":
+      case "White":
         return 37;
       default:
         throw new ArgumentException("Invalid color: ",cor);

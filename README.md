@@ -10,7 +10,7 @@ Obs: Para contribuir, seus códigos devem serguir a premissa de serem "didático
 |---------------------------|:--:|:--:|:--:|:----:|:------:|:--:|:----:|:----:|
 |Pilha Estática com tamanho definido pelo programador| [C](./Linguagem%20C/Pilha/pilhaEstaticaPreDefinida.c) | C++ | [C#](./Linguagem%20CS/Pilha/PilhaEstatica.cs) | Java | Python | GO | Ruby | JavaScript |
 |Pilha Estática com tamanho definido pelo usuário| [C](./Linguagem%20C/Pilha/pilhaEstaticaPosDefinida.c) | C++ | [C#](./Linguagem%20CS/Pilha/PilhaEstaticaInput.cs) | Java | Python | GO | Ruby |JavaScript |
-|Pilha Dinâmica| [C](./Linguagem%20C/Pilha/pilhaDinamica.c) | C++ | C# | Java | Python | GO | Ruby |JavaScript |
+|Pilha Dinâmica| [C](./Linguagem%20C/Pilha/pilhaDinamica.c) | C++ | [C#](./Linguagem%20CS/Pilha/PilhaDin.cs) | Java | Python | GO | Ruby |JavaScript |
 |Fila Estática| [C](./Linguagem%20C/Fila/filaEstatica.c) | C++ | C# | Java | Python | GO | Ruby |JavaScript |
 |Fila Dinâmica| [C](./Linguagem%20C/Fila/filaDinamica.c) | C++ | C# | Java | Python | GO | Ruby |JavaScript |
 |Fila Circular| [C](./Linguagem%20C/Fila/filaEstaticaCircular.c) | C++ | C# | Java | Python | GO | Ruby |JavaScript |

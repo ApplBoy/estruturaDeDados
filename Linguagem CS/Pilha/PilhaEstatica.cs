@@ -1,5 +1,5 @@
 /*
- *  Autor: Saulo José/@AppleBoy
+ *  Autor: Saulo José/@ApplBoy
  *  Data:  22-03-2023
  * 
  *  Sumário:

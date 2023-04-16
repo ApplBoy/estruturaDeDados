@@ -1,32 +1,40 @@
 /*
- *  Autor: Saulo José/@ApplBoy
- *  Data:  22-03-2023
+ *  Autor: Saulo José/@AppleBoy
+ *  Data:  15-04-2023
  *
  *  Sumário:
- *    - [0x01_Main]       >> Função Main(), principal.
- *    - [0x02_Celula]     >> Classe para ser um conjunto de dados para entrar na Pilha.
+ *    - [0x01_Main]       >> Função Main(), principal, que pega o tamanho no input pelo usuário.
+ *    - [0x02_Celula]     >> Classe para ser um conjunto de dados para entrar na Fila.
  *        - [0x02:1]      >> Construtor da Celula.
- *    - [0x03_Pilha]      >> Classe onde é representada a Pilha Estática.
- *        - [0x03:1]      >> Construtor da Pilha (Note que há um input de inteiro `TAMANHO`).
+ *    - [0x03_Fila]       >> Classe onde é representada a Fila Estática.
+ *        - [0x03:1]      >> Construtor da Fila (Note que há um input de inteiro `TAMANHO`).
  *    - [0x04_Attr]       >> Atributos do programa principal.
  *    - [0x05_Continue]   >> Essa função é só para esperar pelo input qualquer do usuário antes de continuar certa tarefa.
  *    - [0x07_Menu]       >> Função que realiza o display do menu de escolhas.
- *    - [0x08_Inserir]    >> Função para inserir uma Celula na Pilha.
+ *    - [0x08_Inserir]    >> Função para inserir uma Celula na Fila.
  *        - [0x08:1]      >> Input do usuário para criar a Celula.
- *        - [0x08:2]      >> Inserção da Celula criada na Pilha.
- *    - [0x09_Remover]    >> Função para remover a Celula do topo dentro da Pilha, caso existir.
- *    - [0x0a_Mostrar]    >> Essa função só irá mostrar a Celula na posição X, que receber, da Pilha.
- *    - [0x0b_Topo]       >> Função que irá mostrar a Celula no topo da Pilha.
- *    - [0x0c_Pesquisar]  >> Outro método que irá buscar na Pilha por uma Celula inserida pelo usuário.
+ *        - [0x08:2]      >> Inserção da Celula criada na Fila.
+ *    - [0x09_Remover]    >> Função para remover a Celula do topo dentro da Fila, caso existir.
+ *    - [0x0a_Mostrar]    >> Essa função só irá mostrar a Celula na posição X, que receber, da Fila.
+ *    - [0x0b_Topo]       >> Função que irá mostrar a Celula no topo da Fila.
+ *    - [0x0c_Primeiro]   >> Função que irá mostrar a primeira Celula da Fila.
+ *    - [0x0d_Pesquisar]  >> Outro método que irá buscar na Fila por uma Celula inserida pelo usuário.
  *
  *    ---                                                                                   EXTRAS   ---
  *
- *    - [0x06_Opcoes]     >> Função para criar uma lista de opções coloridas.
- *    - [0x0d_Cor]        >> Essa função, reconhece se o SO é Windows ou (provavelmente) Unix, e troca a cor por:
- *        - [0x0d:1]      >> - Função nativa do C# (Windows).
- *        - [0x0d:2]      >> - Utiliza códigos de Escape ANSI (Unix).
- *    - [0x0e_Ansi]       >> Essa função retorna de acordo com a lista definida, os valores para cada cor.
+ *    - [0x06_Opcoes]     >> Função para criar uma Fila de opções coloridas.
+ *    - [0x0e_Cor]        >> Essa função, reconhece se o SO é Windows ou (provavelmente) Unix, e troca a cor por:
+ *        - [0x0e:1]      >> - Função nativa do C# (Windows).
+ *        - [0x0e:2]      >> - Utiliza códigos de Escape ANSI (Unix).
+ *    - [0x0f_Ansi]       >> Essa função retorna de acordo com a Fila definida, os valores para cada cor.
  *    OBS:                   Paleta de Cores é diminuída para ter compatibilidade com os valores de fonte e fundo.
+ *
+ *    ---                                                                                   RESUMO   ---
+ *
+ *    Como pode ver, esse código reutiliza várias das funções declaradas anteriormente com as Pilhas, para achar as
+ *    modificações importantes sobre essas funções reutilizadas, só basta procurar pela flag [0x10_MOD], com exceção
+ *    da função [0x0c_Primeiro], que é autoexplicativo. É mais fácil pensar na Fila como um vetor, mas que recebe no
+ *    último e que remove o primeiro.
  *
  */
 
@@ -48,14 +56,14 @@ public class Celula
   }
 }
 
-//[0x03_Pilha]
-public class Pilha
+//[0x03_Lista]
+public class Lista
 {
   public Celula[] dados;
-  public int topo;
+  public int topo;      // realmente necessário?
 
   //[0x03:1]
-  public Pilha(int TAMANHO)
+  public Lista(int TAMANHO)
   {
     this.topo = -1;
     dados = new Celula[TAMANHO];
@@ -67,53 +75,30 @@ public class Pilha
   }
 }
 
-public class PilhaEstatica
+public class ListaEstatica
 {
 
   //[0x04_Attr]
-  public const int TAMANHO = 5;
-  public static Pilha pilhaEst = new Pilha(TAMANHO);
+  public int TAMANHO;
+  public Lista ListaEst;
 
-  //[0x01_Main]
-  static public void Main()
+  public ListaEstatica(int _tam)
   {
-    int opcao;
-    bool run = true;
-    while (run)
-    {
-      opcao = Menu();   // >> [0x07_Menu]
-      switch(opcao)
-      {
-        case 1:
-          Inserir();    // >> [0x08_Inserir]
-          break;
-        case 2:
-          Remover();    // >> [0x09_Remover]
-          break;
-        case 3:
-          VerTopo();    // >> [0x0b_Topo]
-          break;
-        case 4:
-          Pesquisar();  // >> [0x0c_Pesquisar]
-          break;
-        case 0:
-          run = !run;
-          break;
-      }
-    }
+    this.TAMANHO = _tam;
+    this.ListaEst = new Lista(TAMANHO);
   }
 
   //[0x05_Continue]
-  static public void Continuar()
+  public void Continuar()
   {
-    SetCor("Blue", "default");    // >> [0x0d_Cor]
+    SetCor("Blue", "default");    // >> [0x0e_Cor]
     Console.WriteLine("Digite qualquer tecla para continuar...");
     SetCor("default", "");
     Console.ReadKey();
   }
 
   //[0x06_Opcoes]
-  static public void Opcoes(int num, string text)
+  public void Opcoes(int num, string text)
   {
     SetCor("Yellow", "default");
     Console.Write(num);
@@ -122,7 +107,7 @@ public class PilhaEstatica
   }
 
   //[0x07_Menu]
-  static private int Menu()
+  public int Menu()
   {
     int selecao = -1;
     Console.Clear();
@@ -133,17 +118,18 @@ public class PilhaEstatica
     Opcoes(1, "Inserir um novo elemento.");   // >> [0x06_Opcoes]
     Opcoes(2, "Remover um elemento.");
     Opcoes(3, "Visualizar no topo.");
-    Opcoes(4, "Pesquisar um elemento.");
-    while (selecao < 0 || selecao > 5)
+    Opcoes(4, "Visualizar no primeiro.");
+    Opcoes(5, "Pesquisar um elemento.");
+    while (selecao < 0 || selecao > 6)
       while (!int.TryParse(Console.ReadLine(), out selecao));
     return selecao;
   }
 
   //[0x08_Inserir]
-  static public void Inserir()
+  public void Inserir()
   {
     Console.Clear();
-    if (pilhaEst.topo >= TAMANHO-1)
+    if (ListaEst.topo >= TAMANHO-1)
     {
       SetCor("Red", "default");
       Console.WriteLine("ERRO! TAMANHO MÁXIMO ALCANÇADO!");
@@ -154,7 +140,7 @@ public class PilhaEstatica
 
     //[0x08:1]
     SetCor("Blue", "default");
-    Console.WriteLine("Elementos Criados: "+(pilhaEst.topo+1)+"\n");
+    Console.WriteLine("Elementos Criados: "+(ListaEst.topo+1)+"\n");
     SetCor("default", "");
     Console.WriteLine("Digite o Nome do Elemento:");
     string? nomeAux = Console.ReadLine();
@@ -173,10 +159,10 @@ public class PilhaEstatica
     SetCor("default", "");
 
     //[0x08:2]
-    pilhaEst.dados[++pilhaEst.topo].nome = nomeAux;
-    pilhaEst.dados[pilhaEst.topo].codigo = codigoAux;
+    ListaEst.dados[++ListaEst.topo].nome = nomeAux;
+    ListaEst.dados[ListaEst.topo].codigo = codigoAux;
 
-    if (pilhaEst.dados[pilhaEst.topo].codigo != codigoAux)
+    if (ListaEst.dados[ListaEst.topo].codigo != codigoAux)
       throw new System.Exception("Falha na criação do elemento");
 
     SetCor("Green", "default");
@@ -185,13 +171,13 @@ public class PilhaEstatica
   }
 
   //[0x09_Remover]
-  static public void Remover()
+  public void Remover()
   {
     Console.Clear();
-    if (pilhaEst.topo < 0)
+    if (ListaEst.topo < 0)
     {
       SetCor("Red", "default");
-      Console.WriteLine("ERRO! A PILHA ESTÁ VAZIA!");
+      Console.WriteLine("ERRO! A Lista ESTÁ VAZIA!");
       SetCor("default", "");
       Continuar();
       return;
@@ -199,10 +185,19 @@ public class PilhaEstatica
 
     Console.WriteLine("Removendo o Elemento do topo...");
 
-    pilhaEst.dados[pilhaEst.topo].nome = "";
-    pilhaEst.dados[pilhaEst.topo].codigo = -1;
+    //[0x10_MOD]
+    int ultimo = 0;
+    for (int i = 0; i < ListaEst.topo; i++, ultimo++)
+    {
+      ListaEst.dados[i].nome   =  ListaEst.dados[i+1].nome;
+      ListaEst.dados[i].codigo =  ListaEst.dados[i+1].codigo;
+    }
+    // Sobresecreve o primeiro valor com o valor seguinte e assim segue até chegar no topo.
 
-    if (pilhaEst.dados[pilhaEst.topo--].codigo != -1)
+    ListaEst.dados[ultimo].nome = "";
+    ListaEst.dados[ultimo].codigo = -1;
+
+    if (ListaEst.dados[ListaEst.topo--].codigo != -1)
       throw new System.Exception("Falha ao remover um elemento");
 
     SetCor("Green", "default");
@@ -211,32 +206,49 @@ public class PilhaEstatica
   }
 
   //[0x0a_Mostrar]
-  static public void Mostrar(int index)
+  public void Mostrar(int index)
   {
-    Console.WriteLine("O Topo da Pilha possui os seguintes valores:\n"
-                    + " - Nome:   "+pilhaEst.dados[index].nome   +"\n"
-                    + " - Código: "+pilhaEst.dados[index].codigo);
+    Console.WriteLine("O Topo da Lista possui os seguintes valores:\n"
+                    + " - Nome:   "+ListaEst.dados[index].nome   +"\n"
+                    + " - Código: "+ListaEst.dados[index].codigo);
   }
 
   //[0x0b_Topo]
-  static public void VerTopo()
+  public void VerTopo()
   {
     Console.Clear();
-    if (pilhaEst.topo < 0)
+    if (ListaEst.topo < 0)
     {
       SetCor("Red", "default");
-      Console.WriteLine("ERRO! A PILHA ESTÁ VAZIA!");
+      Console.WriteLine("ERRO! A Lista ESTÁ VAZIA!");
       SetCor("default", "");
       Continuar();
       return;
     }
 
-    Mostrar(pilhaEst.topo);
+    Mostrar(ListaEst.topo);
     Continuar();
   }
 
-  //[0x0c_Pesquisar]
-  static public void Pesquisar()
+  //[0x0c_Primeiro]
+  public void VerPrimeiro()
+  {
+    Console.Clear();
+    if (ListaEst.topo < 0)
+    {
+      SetCor("Red", "default");
+      Console.WriteLine("ERRO! A Lista ESTÁ VAZIA!");
+      SetCor("default", "");
+      Continuar();
+      return;
+    }
+
+    Mostrar(0);
+    Continuar();
+  }
+
+  //[0x0d_Pesquisar]
+  public void Pesquisar()
   {
     Console.Clear();
     Console.WriteLine("Digite o CÓDIGO do Elemento (Caso queira procurar pelo NOME, digite -1):");
@@ -247,9 +259,9 @@ public class PilhaEstatica
       Console.WriteLine("Digite o NOME do Elemento:");  // Pesquisa pelo NOME v
       string? nomeAux = Console.ReadLine();
 
-      for (int i = 0; i <= pilhaEst.topo; i++)
+      for (int i = 0; i <= ListaEst.topo; i++)
       {
-        if (nomeAux == pilhaEst.dados[i].nome)
+        if (nomeAux == ListaEst.dados[i].nome)
         {
           SetCor("Green", "default");
           Console.WriteLine("Elemento Encontrado!");
@@ -264,9 +276,9 @@ public class PilhaEstatica
     }
     else
     {
-      for (int i = 0; i <= pilhaEst.topo; i++)          // Pesquisa pelo CÓDIGO v
+      for (int i = 0; i <= ListaEst.topo; i++)          // Pesquisa pelo CÓDIGO v
       {
-        if (codigoAux == pilhaEst.dados[i].codigo)
+        if (codigoAux == ListaEst.dados[i].codigo)
         {
           SetCor("Green", "default");
           Console.WriteLine("Elemento Encontrado!");
@@ -281,16 +293,16 @@ public class PilhaEstatica
     }
   }
 
-  //[0x0d_Cor]
-  static public void SetCor(string colorFg, string colorBg)
+  //[0x0e_Cor]
+  public void SetCor(string colorFg, string colorBg)
   {
     if (OperatingSystem.IsWindows())
     {
       if (colorFg != "default")
       {
-        //[0x0d:1]
+        //[0x0e:1]
         if (colorBg == "default")
-          colorBg = "Black";
+            colorBg = "Black";
 
         Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colorFg);
         Console.BackgroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colorBg);
@@ -306,7 +318,7 @@ public class PilhaEstatica
     {
       if (colorFg != "default")
       {
-        //[0x0d:2]
+        //[0x0e:2]
         if (colorBg == "default")
         {
           int CorFgANSI = GetCodigoANSI(colorFg);
@@ -328,8 +340,8 @@ public class PilhaEstatica
     }
   }
 
-  //[0x0e_Ansi]
-  static public int GetCodigoANSI(string cor)
+  //[0x0f_Ansi]
+  public int GetCodigoANSI(string cor)
   {
     switch (cor)
     {
@@ -354,3 +366,45 @@ public class PilhaEstatica
     }
   }
 }
+
+public class MainClass
+{
+  //[0x01_Main]
+  static public void Main()
+  {
+    Console.Clear();
+    Console.WriteLine("Insira a Quantidade de Celulas que a Lista Suporta:");
+    int inicializador;
+    while (!int.TryParse(Console.ReadLine(), out inicializador));
+    var Controller = new ListaEstatica(inicializador);
+
+    int opcao;
+    bool run = true;
+    while (run)
+    {
+      opcao = Controller.Menu();    // >> [0x07_Menu]
+      switch(opcao)
+      {
+        case 1:
+          Controller.Inserir();     // >> [0x08_Inserir]
+          break;
+        case 2:
+          Controller.Remover();     // >> [0x09_Remover]
+          break;
+        case 3:
+          Controller.VerTopo();     // >> [0x0b_Topo]
+          break;
+        case 4:
+          Controller.VerPrimeiro(); // >> [0x0c_Primeiro]
+          break;
+        case 5:
+          Controller.Pesquisar();   // >> [0x0d_Pesquisar]
+          break;
+        case 0:
+          run = !run;
+          break;
+      }
+    }
+  }
+}
+

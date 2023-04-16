@@ -47,7 +47,8 @@ public class Celula
   public int codigo;
 
   //[0x02:1]
-  public Celula(int cdg, string nme) {
+  public Celula(int cdg, string nme)
+  {
     this.codigo = cdg;
     this.nome = nme;
   }
@@ -80,7 +81,8 @@ public class Pilha
   public void Push(Celula item)
   {
     //[0x10_FLAG]
-    // if (topo == dados.Length - 1) {
+    // if (topo == dados.Length - 1)
+    // {
     //   // pilha está cheia, redimensiona
     //   Redimensionar(dados.Length * 2);
     // }
@@ -93,13 +95,15 @@ public class Pilha
   public Celula Pop()
   {
     //[0x10_FLAG]
-    // if (topo == 0) {
+    // if (topo == 0)
+    // {
     //   return null;
     // }
     // Celula item = dados[topo];
     // dados[topo] = null;
     // topo--;
-    // if (topo < dados.Length/4) {
+    // if (topo < dados.Length/4)
+    // {
     //   // pilha está com tamanho muito grande, redimensiona
     //   Redimensionar(Math.Max(dados.Length/2, 1));
     // }
@@ -115,7 +119,8 @@ public class Pilha
   }
 }
 
-public class PilhaControlador  {
+public class PilhaControlador
+{
 
   //[0x04_Attr]
   public Pilha pilhaDin;
@@ -313,7 +318,9 @@ public class PilhaControlador  {
       if (colorFg != "default")
       {
         //[0x0d:1]
-        if (colorBg == "default") { colorBg = "Black"; }
+        if (colorBg == "default")
+          colorBg = "Black";
+
         Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colorFg);
         Console.BackgroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), colorBg);
         return;
@@ -334,7 +341,9 @@ public class PilhaControlador  {
           int CorFgANSI = GetCodigoANSI(colorFg);
           Console.Write($"\x1b[{CorFgANSI}m");
           return;
-        } else {
+        }
+        else
+        {
           int CorFgANSI = GetCodigoANSI(colorFg);
           int CorBgANSI = GetCodigoANSI(colorBg) + 10;
           Console.Write($"\x1b[{CorFgANSI};{CorBgANSI}m");
@@ -351,7 +360,8 @@ public class PilhaControlador  {
   //[0x0e_Ansi]
   public int GetCodigoANSI(string cor)
   {
-    switch (cor) {
+    switch (cor)
+    {
       case "Black":
         return 30;
       case "Red":

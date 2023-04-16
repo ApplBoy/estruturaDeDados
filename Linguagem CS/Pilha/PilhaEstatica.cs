@@ -1,7 +1,7 @@
 /*
  *  Autor: Saulo José/@ApplBoy
  *  Data:  22-03-2023
- * 
+ *
  *  Sumário:
  *    - [0x01_Main]       >> Função Main(), principal.
  *    - [0x02_Celula]     >> Classe para ser um conjunto de dados para entrar na Pilha.
@@ -103,7 +103,7 @@ public class PilhaEstatica {
   //[0x05_Continue]
   static public void Continuar()
   {
-    SetCor("Blue", "Black");    // >> [0x0d_Cor]
+    SetCor("Blue", "default");    // >> [0x0d_Cor]
     Console.WriteLine("Digite qualquer tecla para continuar...");
     SetCor("default", "");
     Console.ReadKey();
@@ -112,7 +112,7 @@ public class PilhaEstatica {
   //[0x06_Opcoes]
   static public void Opcoes(int num, string text)
   {
-    SetCor("Yellow", "Black");
+    SetCor("Yellow", "default");
     Console.Write(num);
     SetCor("default", "");
     Console.WriteLine(" - "+text);
@@ -142,7 +142,7 @@ public class PilhaEstatica {
     Console.Clear();
     if (pilhaEst.topo >= TAMANHO-1)
     {
-      SetCor("Red", "Black");
+      SetCor("Red", "default");
       Console.WriteLine("ERRO! TAMANHO MÁXIMO ALCANÇADO!");
       SetCor("default", "");
       Continuar();    // >> [0x05_Continue]
@@ -150,7 +150,7 @@ public class PilhaEstatica {
     }
 
     //[0x08:1]
-    SetCor("Blue", "Black");
+    SetCor("Blue", "default");
     Console.WriteLine("Elementos Criados: "+(pilhaEst.topo+1)+"\n");
     SetCor("default", "");
     Console.WriteLine("Digite o Nome do Elemento:");
@@ -163,7 +163,7 @@ public class PilhaEstatica {
     while (!int.TryParse(Console.ReadLine(), out codigoAux));
     while (codigoAux == -1)
     {
-      SetCor("Red", "Black");
+      SetCor("Red", "default");
       Console.WriteLine("ERRO! VALOR RESERVADO PELO PROGRAMA, USE OUTRO VALOR PARA O ELEMENTO!");
       while (!int.TryParse(Console.ReadLine(), out codigoAux));
     }
@@ -176,7 +176,7 @@ public class PilhaEstatica {
     if (pilhaEst.dados[pilhaEst.topo].codigo != codigoAux)
       throw new System.Exception("Falha na criação do elemento");
 
-    SetCor("Green", "Black");
+    SetCor("Green", "default");
     Console.WriteLine("Elemento inserido com Sucesso!");
     Continuar();
   }
@@ -187,7 +187,7 @@ public class PilhaEstatica {
     Console.Clear();
     if (pilhaEst.topo < 0)
     {
-      SetCor("Red", "Black");
+      SetCor("Red", "default");
       Console.WriteLine("ERRO! A PILHA ESTÁ VAZIA!");
       SetCor("default", "");
       Continuar();
@@ -202,7 +202,7 @@ public class PilhaEstatica {
     if (pilhaEst.dados[pilhaEst.topo--].codigo != -1)
       throw new System.Exception("Falha ao remover um elemento");
 
-    SetCor("Green", "Black");
+    SetCor("Green", "default");
     Console.WriteLine("Elemento removido com Sucesso!");
     Continuar();
   }
@@ -221,7 +221,7 @@ public class PilhaEstatica {
     Console.Clear();
     if (pilhaEst.topo < 0)
     {
-      SetCor("Red", "Black");
+      SetCor("Red", "default");
       Console.WriteLine("ERRO! A PILHA ESTÁ VAZIA!");
       SetCor("default", "");
       Continuar();
@@ -248,14 +248,14 @@ public class PilhaEstatica {
       {
         if (nomeAux == pilhaEst.dados[i].nome)
         {
-          SetCor("Green", "Black");
+          SetCor("Green", "default");
           Console.WriteLine("Elemento Encontrado!");
           Mostrar(i);
           Continuar();
           return;
         }
       }
-      SetCor("Red", "Black");
+      SetCor("Red", "default");
       Console.WriteLine("Elemento Não Foi Encontrado!");
       Continuar();
     }
@@ -265,14 +265,14 @@ public class PilhaEstatica {
       {
         if (codigoAux == pilhaEst.dados[i].codigo)
         {
-          SetCor("Green", "Black");
+          SetCor("Green", "default");
           Console.WriteLine("Elemento Encontrado!");
           Mostrar(i);
           Continuar();
           return;
         }
       }
-      SetCor("Red", "Black");
+      SetCor("Red", "default");
       Console.WriteLine("Elemento Não Foi Encontrado!");
       Continuar();
     }
@@ -302,10 +302,19 @@ public class PilhaEstatica {
       if (colorFg != "default")
       {
         //[0x0d:2]
-        int CorFgANSI = GetCodigoANSI(colorFg);
-        int CorBgANSI = GetCodigoANSI(colorBg) + 10;
-        Console.Write($"\x1b[{CorFgANSI};{CorBgANSI}m");
-        return;
+        if (colorBg == "default")
+        {
+          int CorFgANSI = GetCodigoANSI(colorFg);
+          Console.Write($"\x1b[{CorFgANSI}m");
+          return;
+        }
+        else
+        {
+          int CorFgANSI = GetCodigoANSI(colorFg);
+          int CorBgANSI = GetCodigoANSI(colorBg) + 10;
+          Console.Write($"\x1b[{CorFgANSI};{CorBgANSI}m");
+          return;
+        }
       }
       else
       {

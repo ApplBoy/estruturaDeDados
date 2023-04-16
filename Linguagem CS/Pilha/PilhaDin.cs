@@ -26,7 +26,6 @@
  *        - [0x0d:1]      >> - Função nativa do C# (Windows).
  *        - [0x0d:2]      >> - Utiliza códigos de Escape ANSI (Unix).
  *    - [0x0e_Ansi]       >> Essa função retorna de acordo com a lista definida, os valores para cada cor.
- *    - [0x0f_GetSet]     >> Getters (Comentado) e Setters.
  *    OBS:                   Paleta de Cores é diminuída para ter compatibilidade com os valores de fonte e fundo.
  *
  *    ---                                                                                   RESUMO   ---
